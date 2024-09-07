@@ -1,5 +1,3 @@
-// src/utils/index.js
-
 import styled from "@emotion/styled";
 
 export const Container = styled.div`

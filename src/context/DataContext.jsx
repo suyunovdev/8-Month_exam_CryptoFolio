@@ -3,15 +3,21 @@ import { createContext } from "react";
 
 export const DataContext = createContext();
 
-export const DataProvider = ({ children}) => {
-    const [type, setType] = useState(localStorage.getItem("type") || "USD");
-    const [watch, setWatch] = useState(
-        JSON.parse(localStorage.getItem("watchList")) || []
-    );
+export const DataProvider = ({ children }) => {
+  const [type, setType] = useState(localStorage.getItem("type") || "USD");
+  const [watch, setWatch] = useState(
+    JSON.parse(localStorage.getItem("watchList")) || []
+  );
 
-    return (
-        <DataContext.Provider value={[type, setType, watch, setWatch]}>
-            {children}
-        </DataContext.Provider>
-    )
-}
+  return (
+    <DataContext.Provider value={[type, setType, watch, setWatch]}>
+      {children}
+    </DataContext.Provider>
+  );
+};
+
+import PropTypes from "prop-types";
+
+DataProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

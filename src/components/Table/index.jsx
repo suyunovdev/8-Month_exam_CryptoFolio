@@ -48,7 +48,7 @@ function Table({ data, fetchData }) {
   return (
     <>
       <div className="px-6 mb-5">
-        <h2 className="text-2xl font-normal  text-center mt-4 mb-3">
+        <h2 className="text-3xl font-semibold text-white  text-center mt-4 mb-3 ">
           Cryptocurrency Prices by Market Cap
         </h2>
         <input
@@ -59,11 +59,11 @@ function Table({ data, fetchData }) {
             setSearch(e.target.value);
           }}
           placeholder="Search For a Crypto Currency.."
-          className="text-white w-full p-6 bg-transparent border border-gray-600 rounded-lg mb-5 placeholder-font-roboto"
+          className="text-white w-full p-6 bg-transparent border bg-cyan-950 rounded-lg mb-5 placeholder-font-roboto"
         />
         <table className="w-full border-collapse">
           <thead className="bg-cyan-950 rounded-xl">
-            <tr className="text-sm font-bold leading-6 tracking-wider text-black">
+            <tr className="text-sm font-bold leading-6 tracking-wider text-white">
               <th className="px-4 py-5 text-left w-1/4 rounded-tl-lg">Coin</th>
               <th className="px-4 py-5 text-right w-1/5">Price</th>
               <th className="px-4 py-5 text-center w-1/4">24h Changes</th>
@@ -100,7 +100,7 @@ function Table({ data, fetchData }) {
                             width={50}
                           />
                           <div>
-                            <h3 className="text-xl font-normal  uppercase">
+                            <h3 className="text-xl font-normal  uppercase text-white">
                               {product.symbol}
                             </h3>
                             <p className="text-sm font-normal  text-gray-400">
@@ -109,7 +109,7 @@ function Table({ data, fetchData }) {
                           </div>
                         </div>
                       </td>
-                      <td className="text-sm font-normal  text-right">
+                      <td className="text-sm font-normal  text-right text-white">
                         {currencyType(type)}{" "}
                         {formatNumber(product.current_price.toFixed(2))}
                       </td>
@@ -132,7 +132,7 @@ function Table({ data, fetchData }) {
                           </p>
                         </div>
                       </td>
-                      <td className="text-sm font-normal  text-right pr-4">
+                      <td className="text-sm font-normal  text-right pr-4 text-white">
                         {currencyType(type)}{" "}
                         {formatNumber(
                           product.market_cap.toString().slice(0, -6)

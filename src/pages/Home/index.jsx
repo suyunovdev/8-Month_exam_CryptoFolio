@@ -1,9 +1,10 @@
 import Carousel from "../../components/Carousel";
 import carouselBg from "../../assets/images/bgImage.jpg";
 import Table from "../../components/Table";
-import Loader from "../../components/Loader";
+// import Loader from "../../components/Loader";
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
+import { BarLoader } from "react-spinners";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -32,7 +33,7 @@ function Home() {
   return (
     <div>
       {loading ? (
-        <Loader />
+        <BarLoader />
       ) : (
         <div>
           <div

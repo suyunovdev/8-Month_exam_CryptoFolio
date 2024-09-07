@@ -3,10 +3,10 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { DataContext } from "../../context/DataContext";
-import Loader from "../Loader";
+// import Loader from "../Loader";
 
 function Chart({ id, days }) {
-  const [type, setType] = useContext(DataContext);
+  const [type] = useContext(DataContext);
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ function Chart({ id, days }) {
     },
   });
 
-  async function getData() {
+  const getData = async () => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -32,19 +32,20 @@ function Chart({ id, days }) {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
-  }, [days]);
+  }, [days, id, type, getData]);
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <div className="flex flex-col items-center justify-center w-full h-full">
+      <div className="flex flex-col items-center justify-center w-full h-full cursor-pointer">
         {!product || loading ? (
-          <Loader />
+          <BarLoader />
         ) : (
           <Line
+            className="cursor-pointer"
             data={{
               labels: product.map((item) => {
                 let date = new Date(item[0]);
@@ -75,5 +76,12 @@ function Chart({ id, days }) {
     </ThemeProvider>
   );
 }
+import PropTypes from "prop-types";
+import { BarLoader } from "react-spinners";
+
+Chart.propTypes = {
+  id: PropTypes.string.isRequired,
+  days: PropTypes.number.isRequired,
+};
 
 export default Chart;

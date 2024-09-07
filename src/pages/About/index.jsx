@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
-import Loader from "../../components/Loader";
+// import Loader from "../../components/Loader";
 import Chart from "../../components/Chart";
 import { formatNumber, currencyType, radioButtons } from "../../utils";
 import parse from "html-react-parser";
+import { BarLoader } from "react-spinners";
 
 function About() {
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [time, setTime] = useState("24");
   const [loading, setLoading] = useState(false);
-  const [type, setType] = useContext(DataContext);
+  const [type] = useContext(DataContext);
   const { id } = useParams();
   const currency = type.toLowerCase();
   console.log(product);
@@ -40,36 +41,36 @@ function About() {
   return (
     <>
       {loading ? (
-        <Loader />
+        <BarLoader />
       ) : (
-        <div className="flex  w-full gap-8 mt-24 mx-auto py-10">
-          <div className="border-r-2 border-gray-500 flex flex-col max-w-[25%] w-full p-5">
+        <div className="flex  w-full gap-8 mt-24  py-10">
+          <div className="border-r-2 border-gray-500 flex flex-col w-[25%]  p-5">
             <img
               src={product?.image?.large}
               width={200}
               alt={product?.name}
               className="mx-auto"
             />
-            <h3 className="text-white text-4xl font-bold leading-tight text-center my-5 max-w-[545px]">
+            <h3 className="text-white text-4xl font-bold leading-tight text-center my-5 ">
               {product?.name}
             </h3>
-            <p className="max-w-[545px] text-base font-normal leading-7 mb-8">
+            <p className="max-w-[545px] text-base font-normal leading-7 mb-8 text-white">
               {parse(description)}
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-white">
               <h3 className="text-lg font-bold mb-2">Rank:</h3>
               <span className="text-lg leading-8 tracking-wider">
                 {product?.market_cap_rank}
               </span>
             </div>
-            <div className="flex gap-2">
-              <h3 className="text-lg font-bold mb-2">Current Price:</h3>
+            <div className="flex gap-2 text-white">
+              <h3 className="text-lg font-bold mb-2 ">Current Price:</h3>
               <span className="text-lg leading-8 tracking-wider">
                 {currencyType(type)}
                 {formatNumber(product?.market_data?.current_price[currency])}
               </span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 text-white">
               <h3 className="text-lg font-bold mb-2">Market Cap:</h3>
               <span className="text-lg leading-8 tracking-wider">
                 {currencyType(type)}
@@ -108,5 +109,4 @@ function About() {
     </>
   );
 }
-
 export default About;
